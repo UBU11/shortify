@@ -1,5 +1,15 @@
 
 import Fastify from 'fastify'
+import { drizzle } from 'drizzle-orm/neon-http'
+import { neon } from "@neondatabase/serverless"
+import dotenv from "dotenv"
+dotenv.config()
+
+const sql = neon(
+ process.env.DATABASE_URL! as string
+)
+
+const db = drizzle({client:sql})
 
 const fastify = Fastify({
   logger: true
