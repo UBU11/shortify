@@ -3,7 +3,7 @@ import Fastify from 'fastify'
 import { drizzle } from 'drizzle-orm/neon-http'
 import { neon } from "@neondatabase/serverless"
 import dotenv from "dotenv"
-import user from '../helpers/user.model.ts'
+import user from '../models/user.model.ts'
 dotenv.config()
 
 const sql = neon(

@@ -1,6 +1,6 @@
 import { Queue } from 'bullmq';
 
-const myQueue = new Queue('foo');
+const myQueue = new Queue('url');
 
 async function addJobs() {
   await myQueue.add('myJobName', { foo: 'bar' });
