@@ -1,34 +1,26 @@
+import Fastify from "fastify";
+import { drizzle } from "drizzle-orm/neon-http";
+import { neon } from "@neondatabase/serverless";
+import dotenv from "dotenv";
+import user from "./models/user.model.ts";
+import longUrl from "./models/link.model.ts";
+dotenv.config();
 
-import Fastify from 'fastify'
-import { drizzle } from 'drizzle-orm/neon-http'
-import { neon } from "@neondatabase/serverless"
-import dotenv from "dotenv"
-import user from '../models/user.model.ts'
-dotenv.config()
+const sql = neon(process.env.DATABASE_URL! as string);
 
-const sql = neon(
- process.env.DATABASE_URL! as string
-)
-
-const db = drizzle({client:sql})
-
-user(db)
+const db = drizzle({ client: sql });
 
 const fastify = Fastify({
-  logger: true
-})
+  logger: true,
+});
 
+fastify.get("/", function (request, reply) {
+  reply.send({ hello: "world" });
+});
 
-fastify.get('/', function (request, reply) {
-  reply.send({ hello: 'world' })
-})
-
-
-fastify.listen({ port: 3000 }, function (err, address) {
+fastify.listen({ port: 3000 }, function (err) {
   if (err) {
-    fastify.log.error(err)
-    process.exit(1)
+    fastify.log.error(err);
+    process.exit(1);
   }
-
-})
-
+});

@@ -2,12 +2,12 @@ import "dotenv/config";
 import { eq } from "drizzle-orm";
 import { usersTable } from "../config/db/schema.ts";
 
-async function user(db: any) {
+async function user(db: any, name: string, age: number, email: string) {
   try {
     const user: typeof usersTable = {
-      name: "john wick",
-      age: 45,
-      email: "killer@john.com",
+      name: name,
+      age: age,
+      email: email,
     };
     await db.insert(usersTable).values(user);
     console.log("New user added");

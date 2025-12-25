@@ -1,21 +1,11 @@
 import "dotenv/config";
 import { eq } from "drizzle-orm";
 import { urlsTable } from "../config/db/schema";
-import { url } from "node:inspector";
 
-type longUrl = {
-  url: any;
-  db: any;
-  expireAt?: any;
-};
-
-const now = Date.now();
-
-async function longUrl({ url, db, expireAt }: longUrl) {
+async function longUrl(url: any, db: any): Promise<void> {
   try {
     const longUrl: typeof urlsTable = {
       originalUrl: url,
-      expire_at: now + expireAt,
     };
 
     await db.insert(urlsTable).values(longUrl);
