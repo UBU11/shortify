@@ -1,9 +1,12 @@
 
-import Dither from "../components/Back-Ground/heroSectionBG"
+import Dither from "../components/Background/heroSectionBG"
+import UrlInput from "../components/form/urlInput"
+
+
 export default function Hero() {
   return (
-
-<div style={{ width: '100%', height: '100vh', position: 'relative' }}>
+<>
+<div className="w-screen h-screen relative">
   <Dither
     waveColor={[0.5, 0.5, 0.5]}
     disableAnimation={false}
@@ -14,7 +17,17 @@ export default function Hero() {
     waveFrequency={3}
     waveSpeed={0.05}
   />
+
+
 </div>
+
+<div className="absolute top-[40vh] left-[40vw]">
+
+<UrlInput></UrlInput>
+
+</div>
+
+</>
   )
 }
 
